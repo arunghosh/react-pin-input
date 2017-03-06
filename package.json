@@ -1,19 +1,18 @@
 {
   "name": "react-pin-input",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "React PIN input",
   "main": "./lib/app.js",
   "dependencies": {},
   "author": {
     "name": "Arun Ghosh",
-    "email": "arunghosh@gmail.com",
-    "url": "http://krasimirtsonev.com"
+    "email": "arunghosh@gmail.com"
   },
   "license": "MIT",
   "keywords": [
     "react",
-    "carousel",
-    "responsive"
+    "pin",
+    "mpin"
   ],
   "repository": {
     "type": "git",
