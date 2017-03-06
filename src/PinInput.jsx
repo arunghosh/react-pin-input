@@ -8,7 +8,7 @@ class PinInput extends Component {
 
   constructor(props) {
     super(props);
-    this.props.hidden = this.props.hidden || false;
+    this.props.secret = this.props.secret || false;
     // TODO: better way to create array
     this.values = new Array(props.length)
       .join('0')
@@ -52,7 +52,7 @@ class PinInput extends Component {
           .map((e, i) => <PinItem
             ref={n => this.elements[i] = n}
             key={i}
-            hidden={this.props.hidden}
+            secret={this.props.secret}
             onChange={(v) => this.onItemChange(v, i)}/>)
         }
       </div>
@@ -63,7 +63,7 @@ class PinInput extends Component {
 PinInput.propTypes = {
   length: PropTypes.number.isRequired,
   onComplete: PropTypes.func.isRequired,
-  hidden: React.PropTypes.bool,
+  secret: React.PropTypes.bool,
   onChange: PropTypes.func
 };
 

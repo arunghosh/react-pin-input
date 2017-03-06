@@ -1,6 +1,6 @@
 {
   "name": "react-pin-input",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "React PIN input",
   "main": "./lib/app.js",
   "dependencies": {},
