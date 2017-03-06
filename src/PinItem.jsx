@@ -49,6 +49,7 @@ class PinItem extends Component {
       onChange={this.onChange}
       maxLength='1'
       autoComplete='off'
+      type={this.props.hidden ? 'password' : 'text'}
       className='form-control pincode-input-text first'
       ref={n => this.input = n}
       onFocus={this.onFocus}
@@ -57,7 +58,8 @@ class PinItem extends Component {
 }
 
 PinItem.propTypes = {
-  onChange: React.PropTypes.func.isRequired
+  onChange: React.PropTypes.func.isRequired,
+  hidden: React.PropTypes.bool
 };
 
 export default PinItem;

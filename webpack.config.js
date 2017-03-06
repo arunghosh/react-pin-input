@@ -45,11 +45,6 @@ var config = {
       }, {
         test: /\.scss$/,
         loader: 'style!css!sass'
-        // loaders: [
-        //   {loader: 'sass-loader'}, // compiles Sass to CSS
-        //   {loader: 'style-loader'}, // creates style nodes from JS strings
-        //   {loader: 'css-loader'} // translates CSS into CommonJS
-        // ]
       }
     ]
   },
