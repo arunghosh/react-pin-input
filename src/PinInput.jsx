@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import PinItem from './PinItem';
+import './style.scss';
 
 /**
  */
@@ -44,7 +45,7 @@ class PinInput extends Component {
 
   render() {
     return (
-      <span>
+      <div className='pincode-input-container'>
         {this
           .values
           .map((e, i) => <PinItem
@@ -52,7 +53,7 @@ class PinInput extends Component {
             key={i}
             onChange={(v) => this.onItemChange(v, i)}/>)
         }
-      </span>
+      </div>
     );
   }
 }

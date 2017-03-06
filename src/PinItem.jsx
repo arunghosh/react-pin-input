@@ -47,6 +47,9 @@ class PinItem extends Component {
 
     return (<input
       onChange={this.onChange}
+      maxLength='1'
+      autoComplete='off'
+      className='form-control pincode-input-text first'
       ref={n => this.input = n}
       onFocus={this.onFocus}
       value={value}/>);
