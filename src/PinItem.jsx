@@ -50,7 +50,7 @@ class PinItem extends Component {
       maxLength='1'
       autoComplete='off'
       type={this.props.secret ? 'password' : 'text'}
-      className='form-control pincode-input-text first'
+      className='pincode-input-text first'
       ref={n => this.input = n}
       onFocus={this.onFocus}
       value={value}/>);
