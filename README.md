@@ -1,23 +1,25 @@
-# webpack-react-lib-starter
-
-**A minimalistic boilerplate for creating react component library using webpack. It has**
-* Testing using jest and enzyme
-* Eslint
-* A dev environment for testing the component in browser
+# react-pin input
 
 [![Build Status](https://travis-ci.org/arunghosh/react-pin-input.svg?branch=master)](https://travis-ci.org/arunghosh/react-pin-input)
 
-**To make new build**
+**React component for PIN/MPIN like input**
+
+![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin.png)
+
+
+### For developers
+
+To make new build
 ```
 npm run build
 ```
 
-**To run dev server**
+To run dev server
 ```
 npm run dev
 ```
 
-**To run test**
+To run test
 ```
 npm run test
 ```
