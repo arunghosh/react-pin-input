@@ -4,13 +4,15 @@
 
 **React component for PIN/MPIN like input**
 
+![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin.png)
+
 **Installation**
 ```
 npm install react-pin-input
 ```
 
 **Usage**
-![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin.png)
+
 
 The component takes in the length of the PIN and two callback to notifiy change and completion.
 
@@ -23,7 +25,9 @@ The ```index``` is the input which is currently in focus.
 **Configuration**
 
 If you set the ```secret``` attibute the input will be hidden.
+
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin-secret.png)
+
 
 ### For developers
 
