@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 /**
  */
@@ -7,7 +7,7 @@ class PinItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
     };
     this.onChange = this
       .onChange
@@ -17,10 +17,10 @@ class PinItem extends Component {
       .bind(this);
   }
 
-  focus() {
-    this
-      .input
-      .focus();
+  onFocus(e) {
+    e
+      .target
+      .select();
   }
 
   onChange(e) {
@@ -32,34 +32,39 @@ class PinItem extends Component {
       this
         .props
         .onChange(value);
-      this.setState({value});
+      this.setState({ value });
     }
   }
 
-  onFocus(e) {
-    e
-      .target
-      .select();
+  focus() {
+    this
+      .input
+      .focus();
   }
 
   render() {
-    const {value} = this.state;
+    const { value } = this.state;
 
     return (<input
-      onChange={this.onChange}
+      onChange={ this.onChange }
       maxLength='1'
       autoComplete='off'
-      type={this.props.secret ? 'password' : 'text'}
+      type={ this.props.secret ? 'password' : 'text' }
       className='pincode-input-text first'
-      ref={n => this.input = n}
-      onFocus={this.onFocus}
-      value={value}/>);
+      ref={ n => (this.input = n) }
+      onFocus={ this.onFocus }
+      value={ value }
+    />);
   }
 }
 
 PinItem.propTypes = {
   onChange: React.PropTypes.func.isRequired,
-  secret: React.PropTypes.bool
+  secret: React.PropTypes.bool,
+};
+
+PinItem.defaultProps = {
+  secret: false,
 };
 
 export default PinItem;

@@ -1,9 +1,23 @@
-# React PIN input component
+# webpack-react-lib-starter
 
-The component takes in the length of the PIN and two callback to notifiy change and completion.
+**A minimalistic boilerplate for creating react component library using webpack. It has**
+* Testing using jest and enzyme
+* Eslint
+* A dev environment for testing the component in browser
 
-```javascript
-<PinInput length={4} onChange={(value, index) => {}} onComplete={(value, index) => {}} />
+
+**To make new build**
+```
+npm run build
 ```
 
-The ```index``` is the input which is currently in focus.
+**To run dev server**
+```
+npm run dev
+```
+
+**To run test**
+```
+npm run test
+```
+

@@ -1,74 +1,48 @@
-var webpack = require('webpack');
-// var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var env = process.env.WEBPACK_ENV || 'dev';
-var WebpackDevServer = require('webpack-dev-server');
-var path = require('path');
+const path = require('path');
 
-var appName = 'app';
-var host = '0.0.0.0';
-var port = '9000';
+let entry = './src/index.js';
+let output = {
+  path: path.join(__dirname, 'dist'),
+  publicPath: '/dist/',
+};
 
-var plugins = [],
-  outputFile;
-
-if (env === 'build') {
-  // plugins.push(new UglifyJsPlugin({ minimize: true })); outputFile = appName +
-  // '.min.js';
-  outputFile = appName + '.js';
-} else {
-  outputFile = appName + '.js';
+if (process.env.NODE_ENV === 'dev') {
+  entry = './example/index.js';
+  output = {
+    path: path.join(__dirname, 'example'),
+    publicPath: '/example/',
+  };
 }
 
-var config = {
-  entry: './src/index.js',
-  devtool: 'source-map',
-  output: {
-    path: __dirname + '/lib',
-    filename: outputFile,
-    publicPath: __dirname + '/example',
-    library: 'react-input-pin',
+module.exports = {
+  entry,
+  output: Object.assign(output, {
+    filename: 'bundle.js',
+    library: 'react-sequence',
     libraryTarget: 'umd', // universal module definition
+  }),
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   module: {
     loaders: [
       {
-        test: /(\.jsx|\.js)$/,
-        loader: 'babel',
-        exclude: /(node_modules|bower_components)/,
-        query: {
-          presets: ['react', 'es2015']
-        }
-      }, {
-        test: /(\.jsx|\.js)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: ['babel-loader'],
       }, {
         test: /\.scss$/,
-        loader: 'style!css!sass'
-      }
-    ]
+        use: [
+          {
+            loader: 'style-loader', // creates style nodes from JS strings
+          }, {
+            loader: 'css-loader', // translates CSS into CommonJS
+          }, {
+            loader: 'sass-loader', // compiles Sass to CSS
+          },
+        ],
+      },
+    ],
   },
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js', '.jsx']
-  },
-  plugins: plugins
 };
-
-if (env === 'dev') {
-  new WebpackDevServer(webpack(config), {
-      contentBase: './example',
-      hot: true,
-      debug: true
-    })
-    .listen(port, host, function (err, result) {
-      if (err) {
-        console.log(err);
-      }
-    });
-  console.log('-------------------------');
-  console.log('Local web server runs at http://' + host + ':' + port);
-  console.log('-------------------------');
-}
-
-module.exports = config;

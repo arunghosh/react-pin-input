@@ -1,6 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import PinItem from './PinItem';
-import './style.scss';
 
 /**
  */
@@ -20,14 +19,14 @@ class PinInput extends Component {
   /**
    */
   onItemChange(value, index) {
-    const {length, onComplete, onChange} = this.props;
+    const { length, onComplete, onChange } = this.props;
     let currentIndex = index;
 
     this.values[index] = value;
 
     // Set focus on next
     if (value.length === 1 && index < length - 1) {
-      currentIndex++;
+      currentIndex += 1;
       this
         .elements[currentIndex]
         .focus();
@@ -50,10 +49,11 @@ class PinInput extends Component {
         {this
           .values
           .map((e, i) => <PinItem
-            ref={n => this.elements[i] = n}
-            key={i}
-            secret={this.props.secret || false}
-            onChange={(v) => this.onItemChange(v, i)}/>)
+            ref={ n => this.elements[i] = n }
+            key={ i }
+            secret={ this.props.secret || false }
+            onChange={ v => this.onItemChange(v, i) }
+          />)
         }
       </div>
     );
@@ -62,9 +62,15 @@ class PinInput extends Component {
 
 PinInput.propTypes = {
   length: PropTypes.number.isRequired,
-  onComplete: PropTypes.func.isRequired,
+  onComplete: PropTypes.func,
   secret: React.PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+};
+
+PinInput.defaultProps = {
+  secret: false,
+  onChange: () => {},
+  onComplete: () => {},
 };
 
 export default PinInput;
