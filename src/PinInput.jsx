@@ -43,14 +43,19 @@ class PinInput extends Component {
     }
   }
 
+  onBackspace(index) {
+    this.elements[index - 1].focus();
+  }
+
   render() {
     return (
       <div className='pincode-input-container'>
         {this
           .values
           .map((e, i) => <PinItem
-            ref={ n => this.elements[i] = n }
+            ref={ n => (this.elements[i] = n) }
             key={ i }
+            onBackspace={ () => this.onBackspace(i) }
             secret={ this.props.secret || false }
             onChange={ v => this.onItemChange(v, i) }
           />)

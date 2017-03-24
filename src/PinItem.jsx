@@ -9,18 +9,14 @@ class PinItem extends Component {
     this.state = {
       value: '',
     };
-    this.onChange = this
-      .onChange
-      .bind(this);
-    this.onFocus = this
-      .onFocus
-      .bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  onFocus(e) {
-    e
-      .target
-      .select();
+  onKeyDown(e) {
+    if (e.keyCode === 8 && (!this.state.value || !this.state.value.length)) {
+      this.props.onBackspace();
+    }
   }
 
   onChange(e) {
@@ -29,9 +25,7 @@ class PinItem extends Component {
     if (!Number.isInteger(Number(value))) value = '';
     if (this.state.value === value) return;
     if (value.length < 2) {
-      this
-        .props
-        .onChange(value);
+      this.props.onChange(value);
       this.setState({ value });
     }
   }
@@ -47,12 +41,13 @@ class PinItem extends Component {
 
     return (<input
       onChange={ this.onChange }
+      onKeyDown={ this.onKeyDown }
       maxLength='1'
       autoComplete='off'
       type={ this.props.secret ? 'password' : 'text' }
       className='pincode-input-text first'
       ref={ n => (this.input = n) }
-      onFocus={ this.onFocus }
+      onFocus={ e => e.target.select() }
       value={ value }
     />);
   }
@@ -60,6 +55,7 @@ class PinItem extends Component {
 
 PinItem.propTypes = {
   onChange: React.PropTypes.func.isRequired,
+  onBackspace: React.PropTypes.func.isRequired,
   secret: React.PropTypes.bool,
 };
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PinInput from '../src';
 
 ReactDOM.render(
-  <PinInput length={5} />,
+  <PinInput length={5} secret />,
   document.getElementById('app')
 );
 

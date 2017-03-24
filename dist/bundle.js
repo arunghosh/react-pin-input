@@ -2041,6 +2041,11 @@ var PinInput = function (_Component) {
       }
     }
   }, {
+    key: 'onBackspace',
+    value: function onBackspace(index) {
+      this.elements[index - 1].focus();
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -2054,6 +2059,9 @@ var PinInput = function (_Component) {
               return _this2.elements[i] = n;
             },
             key: i,
+            onBackspace: function onBackspace() {
+              return _this2.onBackspace(i);
+            },
             secret: _this2.props.secret || false,
             onChange: function onChange(v) {
               return _this2.onItemChange(v, i);
@@ -2147,14 +2155,16 @@ var PinItem = function (_Component) {
       value: ''
     };
     _this.onChange = _this.onChange.bind(_this);
-    _this.onFocus = _this.onFocus.bind(_this);
+    _this.onKeyDown = _this.onKeyDown.bind(_this);
     return _this;
   }
 
   _createClass(PinItem, [{
-    key: 'onFocus',
-    value: function onFocus(e) {
-      e.target.select();
+    key: 'onKeyDown',
+    value: function onKeyDown(e) {
+      if (e.keyCode === 8 && (!this.state.value || !this.state.value.length)) {
+        this.props.onBackspace();
+      }
     }
   }, {
     key: 'onChange',
@@ -2183,6 +2193,7 @@ var PinItem = function (_Component) {
 
       return _react2.default.createElement('input', {
         onChange: this.onChange,
+        onKeyDown: this.onKeyDown,
         maxLength: '1',
         autoComplete: 'off',
         type: this.props.secret ? 'password' : 'text',
@@ -2190,7 +2201,9 @@ var PinItem = function (_Component) {
         ref: function ref(n) {
           return _this2.input = n;
         },
-        onFocus: this.onFocus,
+        onFocus: function onFocus(e) {
+          return e.target.select();
+        },
         value: value
       });
     }
@@ -2201,6 +2214,7 @@ var PinItem = function (_Component) {
 
 PinItem.propTypes = {
   onChange: _react2.default.PropTypes.func.isRequired,
+  onBackspace: _react2.default.PropTypes.func.isRequired,
   secret: _react2.default.PropTypes.bool
 };
 
