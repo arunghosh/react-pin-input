@@ -1,6 +1,6 @@
 {
   "name": "react-pin-input",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "React component for PIN like input",
   "main": "dist/bundle.js",
   "scripts": {
@@ -9,6 +9,16 @@
     "build": "rimraf dist && eslint src && NODE_ENV=prod webpack"
   },
   "author": "Arun Ghosh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arunghosh/react-pin-input"
+  },
+  "keywords": {
+    "pin",
+    "input",
+    "react",
+    "component"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.23.1",
