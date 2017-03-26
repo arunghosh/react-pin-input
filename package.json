@@ -13,12 +13,12 @@
     "type": "git",
     "url": "https://github.com/arunghosh/react-pin-input"
   },
-  "keywords": {
+  "keywords": [
     "pin",
     "input",
     "react",
     "component"
-  },
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.23.1",
