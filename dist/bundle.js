@@ -2010,11 +2010,17 @@ var PinInput = function (_Component) {
     return _this;
   }
 
-  /**
-   */
-
-
   _createClass(PinInput, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Setting focus on the first element
+      if (this.props.focus && this.props.length) this.elements[0].focus();
+    }
+
+    /**
+     */
+
+  }, {
     key: 'onItemChange',
     value: function onItemChange(value, index) {
       var _props = this.props,
@@ -2079,6 +2085,7 @@ PinInput.propTypes = {
   length: _react.PropTypes.number.isRequired,
   onComplete: _react.PropTypes.func,
   secret: _react2.default.PropTypes.bool,
+  focus: _react2.default.PropTypes.bool,
   onChange: _react.PropTypes.func
 };
 

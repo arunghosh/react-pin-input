@@ -16,6 +16,11 @@ class PinInput extends Component {
     this.currentIndex = 0;
   }
 
+  componentDidMount() {
+    // Setting focus on the first element
+    if(this.props.focus && this.props.length) this.elements[0].focus();
+  }
+
   /**
    */
   onItemChange(value, index) {
@@ -69,6 +74,7 @@ PinInput.propTypes = {
   length: PropTypes.number.isRequired,
   onComplete: PropTypes.func,
   secret: React.PropTypes.bool,
+  focus: React.PropTypes.bool,
   onChange: PropTypes.func,
 };
 
