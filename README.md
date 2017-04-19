@@ -25,10 +25,12 @@ The component takes in the length of the PIN and two callback to notifiy change 
 
 **Configuration**
 
-If you set the ```secret``` attibute the input will be hidden.
+If you set the ```secret``` attibute, the input will be hidden as shown below.
 
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin-secret.png)
 
+
+Setting the ```focus``` attibute will set the default focus on the first input element.
 
 
 ### For developers
