@@ -2016,6 +2016,11 @@ var PinInput = function (_Component) {
       // Setting focus on the first element
       if (this.props.focus && this.props.length) this.elements[0].focus();
     }
+  }, {
+    key: 'focus',
+    value: function focus() {
+      if (this.props.length) this.elements[0].focus();
+    }
 
     /**
      */
@@ -2091,6 +2096,7 @@ PinInput.propTypes = {
 
 PinInput.defaultProps = {
   secret: false,
+  focus: false,
   onChange: function onChange() {},
   onComplete: function onComplete() {}
 };

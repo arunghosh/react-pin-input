@@ -21,6 +21,10 @@ class PinInput extends Component {
     if(this.props.focus && this.props.length) this.elements[0].focus();
   }
 
+  focus() {
+    if(this.props.length) this.elements[0].focus();
+  }
+
   /**
    */
   onItemChange(value, index) {
@@ -80,6 +84,7 @@ PinInput.propTypes = {
 
 PinInput.defaultProps = {
   secret: false,
+  focus: false,
   onChange: () => {},
   onComplete: () => {},
 };
