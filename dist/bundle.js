@@ -2017,6 +2017,13 @@ var PinInput = function (_Component) {
       if (this.props.focus && this.props.length) this.elements[0].focus();
     }
   }, {
+    key: 'clear',
+    value: function clear() {
+      this.elements.forEach(function (e) {
+        return e.clear();
+      });
+    }
+  }, {
     key: 'focus',
     value: function focus() {
       if (this.props.length) this.elements[0].focus();
@@ -2178,6 +2185,13 @@ var PinItem = function (_Component) {
       if (e.keyCode === 8 && (!this.state.value || !this.state.value.length)) {
         this.props.onBackspace();
       }
+    }
+  }, {
+    key: 'clear',
+    value: function clear() {
+      this.setState({
+        value: ''
+      });
     }
   }, {
     key: 'onChange',

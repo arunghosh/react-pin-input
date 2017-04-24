@@ -21,6 +21,10 @@ class PinInput extends Component {
     if(this.props.focus && this.props.length) this.elements[0].focus();
   }
 
+  clear() {
+    this.elements.forEach(e => e.clear());
+  }
+
   focus() {
     if(this.props.length) this.elements[0].focus();
   }

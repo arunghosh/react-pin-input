@@ -19,6 +19,12 @@ class PinItem extends Component {
     }
   }
 
+  clear() {
+    this.setState({
+      value: ''
+    });
+  }
+
   onChange(e) {
     let value = e.target.value;
 
