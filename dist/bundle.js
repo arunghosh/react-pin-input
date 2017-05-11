@@ -2022,6 +2022,9 @@ var PinInput = function (_Component) {
       this.elements.forEach(function (e) {
         return e.clear();
       });
+      this.values = this.values.map(function () {
+        return undefined;
+      });
     }
   }, {
     key: 'focus',
