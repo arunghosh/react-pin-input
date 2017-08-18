@@ -2064,7 +2064,9 @@ var PinInput = function (_Component) {
   }, {
     key: 'onBackspace',
     value: function onBackspace(index) {
-      this.elements[index - 1].focus();
+      if (index > 0) {
+        this.elements[index - 1].focus();
+      }
     }
   }, {
     key: 'render',
