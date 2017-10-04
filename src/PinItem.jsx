@@ -27,8 +27,9 @@ class PinItem extends Component {
 
   onChange(e) {
     let value = e.target.value;
-
-    if (!Number.isInteger(Number(value))) value = '';
+    const numCode = value.charCodeAt(0);
+    const isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
+    if (!isInteger) value = '';
     if (this.state.value === value) return;
     if (value.length < 2) {
       this.props.onChange(value);
