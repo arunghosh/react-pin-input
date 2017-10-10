@@ -85,14 +85,18 @@ class PinInput extends Component {
 
 PinInput.propTypes = {
   length: PropTypes.number.isRequired,
+  type: PropTypes.string,
   onComplete: PropTypes.func,
+  validate: PropTypes.func,
   secret: React.PropTypes.bool,
   focus: React.PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 PinInput.defaultProps = {
+  type: 'numeric',
   secret: false,
+  validate: null,
   focus: false,
   onChange: () => {},
   onComplete: () => {},

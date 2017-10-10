@@ -2199,14 +2199,18 @@ var PinInput = function (_Component) {
 
 PinInput.propTypes = {
   length: _react.PropTypes.number.isRequired,
+  type: _react.PropTypes.string,
   onComplete: _react.PropTypes.func,
+  validate: _react.PropTypes.func,
   secret: _react2.default.PropTypes.bool,
   focus: _react2.default.PropTypes.bool,
   onChange: _react.PropTypes.func
 };
 
 PinInput.defaultProps = {
+  type: 'numeric',
   secret: false,
+  validate: null,
   focus: false,
   onChange: function onChange() {},
   onComplete: function onComplete() {}
@@ -2322,7 +2326,6 @@ var PinItem = function (_Component) {
       if (this.props.type === 'numeric') {
         var numCode = value.charCodeAt(0);
         var isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
-
         return isInteger ? value : '';
       } else {
         return value.toUpperCase();

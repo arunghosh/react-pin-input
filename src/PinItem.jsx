@@ -48,7 +48,6 @@ class PinItem extends Component {
     if(this.props.type === 'numeric') {
       const numCode = value.charCodeAt(0);
       const isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
-
       return isInteger ? value : '';
     } else {
       return value.toUpperCase();
