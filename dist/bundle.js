@@ -2185,7 +2185,9 @@ var PinInput = function (_Component) {
             secret: _this2.props.secret || false,
             onChange: function onChange(v) {
               return _this2.onItemChange(v, i);
-            }
+            },
+            type: _this2.props.type,
+            validate: _this2.props.validate
           });
         })
       );
@@ -2298,10 +2300,7 @@ var PinItem = function (_Component) {
   }, {
     key: 'onChange',
     value: function onChange(e) {
-      var value = e.target.value;
-      var numCode = value.charCodeAt(0);
-      var isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
-      if (!isInteger) value = '';
+      var value = this.validate(e.target.value);
       if (this.state.value === value) return;
       if (value.length < 2) {
         this.props.onChange(value);
@@ -2312,6 +2311,22 @@ var PinItem = function (_Component) {
     key: 'focus',
     value: function focus() {
       this.input.focus();
+    }
+  }, {
+    key: 'validate',
+    value: function validate(value) {
+      if (this.props.validate) {
+        return this.props.validate(value);
+      }
+
+      if (this.props.type === 'numeric') {
+        var numCode = value.charCodeAt(0);
+        var isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
+
+        return isInteger ? value : '';
+      } else {
+        return value.toUpperCase();
+      }
     }
   }, {
     key: 'render',
@@ -2326,7 +2341,8 @@ var PinItem = function (_Component) {
         onKeyDown: this.onKeyDown,
         maxLength: '1',
         autoComplete: 'off',
-        type: this.props.secret ? 'password' : 'text',
+        type: this.props.secret ? 'password' : this.props.type === 'numeric' ? 'tel' : 'text',
+        pattern: this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*',
         className: 'pincode-input-text first',
         ref: function ref(n) {
           return _this2.input = n;
@@ -2345,11 +2361,14 @@ var PinItem = function (_Component) {
 PinItem.propTypes = {
   onChange: _react2.default.PropTypes.func.isRequired,
   onBackspace: _react2.default.PropTypes.func.isRequired,
-  secret: _react2.default.PropTypes.bool
+  secret: _react2.default.PropTypes.bool,
+  type: _react2.default.PropTypes.string,
+  validate: _react2.default.PropTypes.func
 };
 
 PinItem.defaultProps = {
-  secret: false
+  secret: false,
+  type: 'numeric'
 };
 
 exports.default = PinItem;

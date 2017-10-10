@@ -74,6 +74,8 @@ class PinInput extends Component {
             onBackspace={ () => this.onBackspace(i) }
             secret={ this.props.secret || false }
             onChange={ v => this.onItemChange(v, i) }
+            type={ this.props.type }
+            validate={ this.props.validate }
           />)
         }
       </div>
