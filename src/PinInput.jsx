@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import PinItem from './PinItem';
 
 /**
@@ -88,8 +89,8 @@ PinInput.propTypes = {
   type: PropTypes.string,
   onComplete: PropTypes.func,
   validate: PropTypes.func,
-  secret: React.PropTypes.bool,
-  focus: React.PropTypes.bool,
+  secret: PropTypes.bool,
+  focus: PropTypes.bool,
   onChange: PropTypes.func,
 };
 

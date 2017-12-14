@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  */
@@ -73,11 +74,11 @@ class PinItem extends Component {
 }
 
 PinItem.propTypes = {
-  onChange: React.PropTypes.func.isRequired,
-  onBackspace: React.PropTypes.func.isRequired,
-  secret: React.PropTypes.bool,
-  type: React.PropTypes.string,
-  validate: React.PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  onBackspace: PropTypes.func.isRequired,
+  secret: PropTypes.bool,
+  type: PropTypes.string,
+  validate: PropTypes.func,
 };
 
 PinItem.defaultProps = {
