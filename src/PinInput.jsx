@@ -76,6 +76,7 @@ class PinInput extends Component {
             secret={ this.props.secret || false }
             onChange={ v => this.onItemChange(v, i) }
             type={ this.props.type }
+            inputMode={ this.props.inputMode }
             validate={ this.props.validate }
           />)
         }
@@ -92,6 +93,7 @@ PinInput.propTypes = {
   secret: PropTypes.bool,
   focus: PropTypes.bool,
   onChange: PropTypes.func,
+  inputMode: PropTypes.string,
 };
 
 PinInput.defaultProps = {
@@ -101,6 +103,7 @@ PinInput.defaultProps = {
   focus: false,
   onChange: () => {},
   onComplete: () => {},
+  inputMode: undefined,
 };
 
 export default PinInput;

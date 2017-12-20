@@ -1,6 +1,6 @@
 {
   "name": "react-pin-input",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "React component for PIN like input",
   "main": "dist/bundle.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.27.3",
     "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^3.17.1",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
