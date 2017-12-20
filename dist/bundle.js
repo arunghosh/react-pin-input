@@ -2920,9 +2920,8 @@ var PinItem = function (_Component) {
         var numCode = value.charCodeAt(0);
         var isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
         return isInteger ? value : '';
-      } else {
-        return value.toUpperCase();
       }
+      return value.toUpperCase();
     }
   }, {
     key: 'render',
@@ -2931,13 +2930,13 @@ var PinItem = function (_Component) {
 
       var value = this.state.value;
 
-
+      var type = this.props.type === 'numeric' ? 'tel' : this.props.type || 'text';
       return _react2.default.createElement('input', {
         onChange: this.onChange,
         onKeyDown: this.onKeyDown,
         maxLength: '1',
         autoComplete: 'off',
-        type: this.props.secret ? 'password' : this.props.type === 'numeric' ? 'tel' : 'text',
+        type: this.props.secret ? 'password' : type,
         pattern: this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*',
         className: 'pincode-input-text first',
         ref: function ref(n) {
