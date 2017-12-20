@@ -25,7 +25,9 @@ The component takes in the length of the PIN and two callback to notifiy change 
 
 **Configuration**
 
- - If you set the ```type``` attibute to ```custom```, the input will take values other than numeric.
+ - If you set the ```type``` attibute to ```numeric```, the input will take only numbers.
+ 
+ - If you set the ```type``` attibute to ```custom```, the input will take values other than numbers.
 
  - If you set the ```secret``` attibute, the input will be hidden as shown below.
 
