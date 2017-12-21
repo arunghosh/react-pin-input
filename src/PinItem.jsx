@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const styles = {
+  input: {
+    padding: 0,
+    margin: '0 2px',
+    textAlign: 'center',
+    border: '1px solid',
+    background: 'transparent',
+    width: '50px',
+    height: '50px',
+  },
+  inputFocus: {
+    outline: 'none',
+    boxShadow: 'none',
+  },
+};
+
 /**
  */
 class PinItem extends Component {
@@ -9,9 +25,12 @@ class PinItem extends Component {
     super(props);
     this.state = {
       value: '',
+      focus: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   onKeyDown(e) {
@@ -41,6 +60,16 @@ class PinItem extends Component {
       .focus();
   }
 
+  onFocus(e) {
+    e.target.select();
+
+    this.setState({ focus: true });
+  }
+
+  onBlur() {
+    this.setState({ focus: false });
+  }
+
   validate(value) {
     if(this.props.validate) {
       return this.props.validate(value);
@@ -55,8 +84,8 @@ class PinItem extends Component {
   }
 
   render() {
-    const { value } = this.state;
-    const { type, inputMode } = this.props;
+    const { focus, value } = this.state;
+    const { type, inputMode, inputStyle, inputFocusStyle } = this.props;
     const inputType = this.props.type === 'numeric' ? 'tel' : (this.props.type || 'text');
     return (<input
       onChange={ this.onChange }
@@ -65,10 +94,16 @@ class PinItem extends Component {
       autoComplete='off'
       inputMode={ inputMode || type }
       type={ this.props.secret ? 'password' : inputType }
-      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*'}
-      className='pincode-input-text first'
+      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
       ref={ n => (this.input = n) }
-      onFocus={ e => e.target.select() }
+      onFocus={ this.onFocus }
+      onBlur={ this.onBlur }
+      style={ Object.assign(
+        {},
+        styles.input,
+        inputStyle,
+        focus ? Object.assign({}, styles.inputFocus, inputFocusStyle) : {},
+      ) }
       value={ value }
     />);
   }
@@ -81,6 +116,8 @@ PinItem.propTypes = {
   type: PropTypes.string,
   inputMode: PropTypes.string,
   validate: PropTypes.func,
+  inputStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  inputFocusStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 PinItem.defaultProps = {
