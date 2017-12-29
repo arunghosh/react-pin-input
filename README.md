@@ -45,8 +45,12 @@ The component takes in the length of the PIN and two callback to notifiy change 
 
 **Style**
 
-Currently there is no proper way to set the style. As a hack you can override the default style.
+You can update the style via following props
+- `style`
+- `inputStyle`
+- `inputFocusStyle`
 
+Or another option is to override the default style(shown below is scss. For css [refer](https://github.com/arunghosh/react-pin-input/issues/4) ).
 ```scss
 .pincode-input-container
 {
