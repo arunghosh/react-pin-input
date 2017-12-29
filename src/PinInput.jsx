@@ -66,7 +66,7 @@ class PinInput extends Component {
 
   render() {
     return (
-      <div className='pincode-input-container'>
+      <div style={ this.props.style }>
         {this
           .values
           .map((e, i) => <PinItem
@@ -78,6 +78,8 @@ class PinInput extends Component {
             type={ this.props.type }
             inputMode={ this.props.inputMode }
             validate={ this.props.validate }
+            inputStyle={ this.props.inputStyle }
+            inputFocusStyle={ this.props.inputFocusStyle }
           />)
         }
       </div>
@@ -94,6 +96,9 @@ PinInput.propTypes = {
   focus: PropTypes.bool,
   onChange: PropTypes.func,
   inputMode: PropTypes.string,
+  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  inputStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  inputFocusStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 PinInput.defaultProps = {
@@ -104,6 +109,9 @@ PinInput.defaultProps = {
   onChange: () => {},
   onComplete: () => {},
   inputMode: undefined,
+  style: {},
+  inputStyle: {},
+  inputFocusStyle: {},
 };
 
 export default PinInput;
