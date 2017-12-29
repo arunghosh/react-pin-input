@@ -7,50 +7,63 @@
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin.png)
 
 
-**Installation**
+## Installation
 ```
 npm install react-pin-input
 ```
 
 
-**Usage**
+## Usage
 
 The component takes in the length of the PIN and two callback to notifiy change and completion. The ```index``` is the input which is currently in focus.
 
 ```javascript
-<PinInput length={4} secret onChange={(value, index) => {}} onComplete={(value, index) => {}} />
+<PinInput 
+  length={4} 
+  secret 
+  onChange={(value, index) => {}} 
+  type="numeric" 
+  style={{padding: '10px'}}  
+  inputStyle={{borderColor: 'red'}}
+  inputFocusStyle={{borderColor: 'blue'}}
+  onComplete={(value, index) => {}}
+/>
 ```
+|Attribute|Type|Description|
+|:--|:--|:--|
+|length|number|Number of inputs|
+|type|string|Type of input allowed
+||| if ```numeric```, the input will take only numbers|
+||| if ```custom```, the input will take other than numbers|
+|secret|boolean|If you set the ```secret``` attibute, the input will be hidden as shown below.
+|focus|boolean| Setting the ```focus``` attibute will set the default focus on the first input element.
+|onChange|function|Callback function invoked on input change. The first parameter is the value and the second is the index of the input that is currently in focus|
+|onComplete|function|Callback function invoked when all inputs have valid values. The first parameter is the value and the second is the index of the input that is currently in focus|
+|style|object|Style for the container `div`
+|inputStyle|object|Style for the input element
+|inputFocusStyle|object|Style for the input element when on focus
 
-
-
-**Configuration**
-
- - If you set the ```type``` attibute to ```numeric```, the input will take only numbers.
- 
- - If you set the ```type``` attibute to ```custom```, the input will take values other than numbers.
-
- - If you set the ```secret``` attibute, the input will be hidden as shown below.
-
+Display when secret is set
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin-secret.png)
 
- - Setting the ```focus``` attibute will set the default focus on the first input element.
 
-**APIs**
+## Additional APIs
 
 ```javascript
 <PinInput length={4} ref={(n) => ele=n} />
 ```
- - ```ele.focus()``` to set focus on the first input element.
- - ```ele.clear``` to clear the values
+  - ```ele.focus()``` to set focus on the first input element.
+  - ```ele.clear``` to clear the values
 
-**Style**
+## Custom Style
 
 You can update the style via following props
-- `style`
-- `inputStyle`
-- `inputFocusStyle`
+ - `style`
+ - `inputStyle`
+ - `inputFocusStyle`
 
 Or another option is to override the default style(shown below is scss. For css [refer](https://github.com/arunghosh/react-pin-input/issues/4) ).
+
 ```scss
 .pincode-input-container
 {
@@ -73,19 +86,19 @@ Or another option is to override the default style(shown below is scss. For css 
 ```
 
 
-### For developers
+## For developers
 
-To make new build
+**New build**
 ```
 npm run build
 ```
 
-To run dev server
+**Run dev server**
 ```
 npm run dev
 ```
 
-To run test
+**Run test**
 ```
 npm run test
 ```
