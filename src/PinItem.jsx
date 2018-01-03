@@ -63,7 +63,6 @@ class PinItem extends Component {
 
   onFocus(e) {
     e.target.select();
-
     this.setState({ focus: true });
   }
 
@@ -89,6 +88,7 @@ class PinItem extends Component {
     const { type, inputMode, inputStyle, inputFocusStyle } = this.props;
     const inputType = this.props.type === 'numeric' ? 'tel' : (this.props.type || 'text');
     return (<input
+      className='pincode-input-text first'
       onChange={ this.onChange }
       onKeyDown={ this.onKeyDown }
       maxLength='1'

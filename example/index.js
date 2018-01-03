@@ -9,8 +9,10 @@ ReactDOM.render(
     <PinInput
       length={5}
       focus
+      secret
       ref={p => (pin = p)}
       type="numeric"
+      onChange={v => console.log(v)}
       onComplete={v => alert(v)}
     />
     <button onClick={() => pin.clear()}>Clear</button>

@@ -67,7 +67,7 @@ class PinInput extends Component {
 
   render() {
     return (
-      <div style={ this.props.style }>
+      <div style={this.props.style}  className='pincode-input-container'>
         {this
           .values
           .map((e, i) => <PinItem
