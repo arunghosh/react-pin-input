@@ -952,11 +952,14 @@ var PinItem = function (_Component) {
   }, {
     key: 'onChange',
     value: function onChange(e) {
+      var _this2 = this;
+
       var value = this.validate(e.target.value);
       if (this.state.value === value) return;
       if (value.length < 2) {
-        this.props.onChange(value);
-        this.setState({ value: value }, function () {});
+        this.setState({ value: value }, function () {
+          _this2.props.onChange(value);
+        });
       }
     }
   }, {
@@ -992,7 +995,7 @@ var PinItem = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _state = this.state,
           focus = _state.focus,
@@ -1013,7 +1016,7 @@ var PinItem = function (_Component) {
         type: this.props.secret ? 'password' : inputType,
         pattern: this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*',
         ref: function ref(n) {
-          return _this2.input = n;
+          return _this3.input = n;
         },
         onFocus: this.onFocus,
         onBlur: this.onBlur,
