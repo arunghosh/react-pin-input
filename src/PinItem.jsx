@@ -49,9 +49,8 @@ class PinItem extends Component {
     const value = this.validate(e.target.value);
     if (this.state.value === value) return;
     if (value.length < 2) {
-      this.setState({ value }, () => {
-        this.props.onChange(value);
-      });
+      this.props.onChange(value);
+      this.setState({ value }, () => { });
     }
   }
 
