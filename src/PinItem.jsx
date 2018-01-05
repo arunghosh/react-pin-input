@@ -88,12 +88,11 @@ class PinItem extends Component {
     const { type, inputMode, inputStyle, inputFocusStyle } = this.props;
     const inputType = this.props.type === 'numeric' ? 'tel' : (this.props.type || 'text');
     return (<input
-      className='pincode-input-text first'
+      className='pincode-input-text'
       onChange={ this.onChange }
       onKeyDown={ this.onKeyDown }
       maxLength='1'
       autoComplete='off'
-      inputMode={ inputMode || type }
       type={ this.props.secret ? 'password' : inputType }
       pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
       ref={ n => (this.input = n) }

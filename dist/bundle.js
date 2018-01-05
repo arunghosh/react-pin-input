@@ -1008,12 +1008,11 @@ var PinItem = function (_Component) {
 
       var inputType = this.props.type === 'numeric' ? 'tel' : this.props.type || 'text';
       return _react2.default.createElement('input', {
-        className: 'pincode-input-text first',
+        className: 'pincode-input-text',
         onChange: this.onChange,
         onKeyDown: this.onKeyDown,
         maxLength: '1',
         autoComplete: 'off',
-        inputMode: inputMode || type,
         type: this.props.secret ? 'password' : inputType,
         pattern: this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*',
         ref: function ref(n) {
