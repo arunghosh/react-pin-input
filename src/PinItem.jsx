@@ -49,9 +49,12 @@ class PinItem extends Component {
     const value = this.validate(e.target.value);
     if (this.state.value === value) return;
     if (value.length < 2) {
-      this.setState({ value }, () => {
+      this.setState({value});
+      // timeout is to make sure that clearing happens after value is set
+      // this is done beacause the setState callback was not triggering in react@15.2.4
+      setTimeout(() => {
         this.props.onChange(value);
-      });
+      }, 0);
     }
   }
 

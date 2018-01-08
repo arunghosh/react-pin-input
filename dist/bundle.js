@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
+/******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/ 		}
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -250,10 +250,6 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -670,11 +666,11 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(14)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(13)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(13)();
+  module.exports = __webpack_require__(12)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -687,9 +683,9 @@ if (process.env.NODE_ENV !== 'production') {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(16);
-} else {
   module.exports = __webpack_require__(15);
+} else {
+  module.exports = __webpack_require__(14);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -850,8 +846,7 @@ PinInput.propTypes = {
   inputMode: _propTypes2.default.string,
   style: _propTypes2.default.object, // eslint-disable-line react/forbid-prop-types
   inputStyle: _propTypes2.default.object, // eslint-disable-line react/forbid-prop-types
-  inputFocusStyle: _propTypes2.default.object // eslint-disable-line react/forbid-prop-types
-};
+  inputFocusStyle: _propTypes2.default.object };
 
 PinInput.defaultProps = {
   type: 'numeric',
@@ -957,9 +952,12 @@ var PinItem = function (_Component) {
       var value = this.validate(e.target.value);
       if (this.state.value === value) return;
       if (value.length < 2) {
-        this.setState({ value: value }, function () {
+        this.setState({ value: value });
+        // timeout is to make sure that clearing happens after value is set
+        // this is done beacause the setState callback was not triggering in react@15.2.4
+        setTimeout(function () {
           _this2.props.onChange(value);
-        });
+        }, 0);
       }
     }
   }, {
@@ -1037,8 +1035,7 @@ PinItem.propTypes = {
   inputMode: _propTypes2.default.string,
   validate: _propTypes2.default.func,
   inputStyle: _propTypes2.default.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  inputFocusStyle: _propTypes2.default.object.isRequired // eslint-disable-line react/forbid-prop-types
-};
+  inputFocusStyle: _propTypes2.default.object.isRequired };
 
 PinItem.defaultProps = {
   secret: false,
@@ -1051,25 +1048,6 @@ exports.default = PinItem;
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _PinInput = __webpack_require__(10);
-
-var _PinInput2 = _interopRequireDefault(_PinInput);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _PinInput2.default;
-
-/***/ }),
-/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1134,7 +1112,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1684,7 +1662,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3049,7 +3027,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3075,6 +3053,25 @@ var U={Children:{map:function(a,b,e){if(null==a)return a;var c=[];T(a,c,null,b,e
 d=a.key,g=a.ref,k=a._owner;if(null!=b){void 0!==b.ref&&(g=b.ref,k=G.current);void 0!==b.key&&(d=""+b.key);if(a.type&&a.type.defaultProps)var f=a.type.defaultProps;for(h in b)H.call(b,h)&&!I.hasOwnProperty(h)&&(c[h]=void 0===b[h]&&void 0!==f?f[h]:b[h])}var h=arguments.length-2;if(1===h)c.children=e;else if(1<h){f=Array(h);for(var l=0;l<h;l++)f[l]=arguments[l+2];c.children=f}return{$$typeof:r,type:a.type,key:d,ref:g,props:c,_owner:k}},createFactory:function(a){var b=J.bind(null,a);b.type=a;return b},
 isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurrentOwner:G,assign:m}},V=Object.freeze({default:U}),W=V&&U||V;module.exports=W["default"]?W["default"]:W;
 
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _PinInput = __webpack_require__(10);
+
+var _PinInput2 = _interopRequireDefault(_PinInput);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _PinInput2.default;
 
 /***/ })
 /******/ ]);
