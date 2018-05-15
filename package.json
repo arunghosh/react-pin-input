@@ -46,5 +46,6 @@
     "prop-types": "^15.6.0",
     "react": "^0.14.0 || ^15.4.2 || ^16.2.0",
     "react-dom": "^0.14.0 || ^15.4.2 || ^16.2.0"
-  }
+  },
+  "types": "./typings/react-pin-input.d.ts"
 }
