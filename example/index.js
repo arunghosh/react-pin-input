@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PinInput from '../src';
+import React from "react";
+import ReactDOM from "react-dom";
+import PinInput from "../src";
 
 let pin;
 
@@ -17,5 +17,5 @@ ReactDOM.render(
     />
     <button onClick={() => pin.clear()}>Clear</button>
   </div>,
-  document.getElementById('app'),
+  document.getElementById("app")
 );
