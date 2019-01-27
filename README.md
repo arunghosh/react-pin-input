@@ -8,6 +8,8 @@
 
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin.png)
 
+## Demo
+https://codesandbox.io/s/8jnlxw359
 
 ## Installation
 ```
