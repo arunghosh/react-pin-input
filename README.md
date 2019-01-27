@@ -1,10 +1,10 @@
 # react-pin-input
 
-*There is [another package](https://github.com/40818419/react-code-input) for managing PIN input. Check and see which suits you better.
+_There is [another package](https://github.com/40818419/react-code-input) for managing PIN input. Check and see which suits you better._
 
 [![Build Status](https://travis-ci.org/arunghosh/react-pin-input.svg?branch=master)](https://travis-ci.org/arunghosh/react-pin-input)
 
-**React component for PIN/MPIN like input**
+**React-PIN-Input is a React component o capture PIN/MPIN like input**
 
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin.png)
 
@@ -13,7 +13,7 @@ https://codesandbox.io/s/8jnlxw359
 
 ## Installation
 ```
-npm install react-pin-input
+npm install react-pin-input --save
 ```
 
 
