@@ -24,13 +24,13 @@ class PinItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      value: props.initialValue,
       focus: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);
+    this.onBlur = this.onBlur.bind(this);    
   }
 
   onKeyDown(e) {
@@ -113,6 +113,7 @@ class PinItem extends Component {
 }
 
 PinItem.propTypes = {
+  initialValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onBackspace: PropTypes.func.isRequired,
   secret: PropTypes.bool,

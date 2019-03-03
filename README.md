@@ -24,6 +24,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
 ```javascript
 <PinInput 
   length={4} 
+  initialValue=""
   secret 
   onChange={(value, index) => {}} 
   type="numeric" 
@@ -36,6 +37,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
 |Attribute|Type|Description|
 |:--|:--|:--|
 |length|number|Number of inputs|
+|initialValue|number\|string|Initial value of inputs|
 |type|string|Type of input allowed
 ||| if ```numeric```, the input will take only numbers|
 ||| if ```custom```, the input will take other than numbers|
