@@ -5,6 +5,7 @@ declare module 'react-pin-input' {
 
     interface PinInputProps {
         length: number;
+        initialValue?: number|string;
         type?: InputType;
         secret?: boolean;
         focus?: boolean;

@@ -8,11 +8,8 @@ class PinInput extends Component {
 
   constructor(props) {
     super(props);
-    // this.props.secret = this.props.secret || false;
-    // TODO: better way to create array
-    this.values = new Array(props.length)
-      .join('0')
-      .split('0');
+
+    this.values = Array(props.length).fill('').map((x, i) => props.initialValue.toString()[i] || '');
     this.elements = [];
     this.currentIndex = 0;
   }
@@ -67,10 +64,11 @@ class PinInput extends Component {
 
   render() {
     return (
-      <div style={this.props.style}  className='pincode-input-container'>
+      <div style={this.props.style} className='pincode-input-container'>
         {this
           .values
           .map((e, i) => <PinItem
+            initialValue={e}
             ref={ n => (this.elements[i] = n) }
             key={ i }
             onBackspace={ () => this.onBackspace(i) }
@@ -89,6 +87,7 @@ class PinInput extends Component {
 }
 
 PinInput.propTypes = {
+  initialValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   length: PropTypes.number.isRequired,
   type: PropTypes.string,
   onComplete: PropTypes.func,
@@ -103,6 +102,7 @@ PinInput.propTypes = {
 };
 
 PinInput.defaultProps = {
+  initialValue: '',
   type: 'numeric',
   secret: false,
   validate: null,

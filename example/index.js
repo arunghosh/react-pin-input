@@ -8,6 +8,7 @@ ReactDOM.render(
   <div>
     <PinInput
       length={5}
+      initialValue=""
       focus
       secret
       ref={p => (pin = p)}
