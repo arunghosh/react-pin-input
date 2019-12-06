@@ -9,15 +9,18 @@
     "build": "rimraf dist && eslint src && NODE_ENV=prod webpack"
   },
   "author": "Arun Ghosh",
+  "contributors": ["Leire Polo Martin"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/arunghosh/react-pin-input"
+    "url": "https://github.com/leireNN/react-pin-input"
   },
   "keywords": [
     "pin",
     "input",
     "react",
-    "component"
+    "secret",
+    "component",
+    "javascript"
   ],
   "license": "MIT",
   "devDependencies": {
