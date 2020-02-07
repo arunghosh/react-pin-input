@@ -35,8 +35,11 @@ class PinItem extends Component {
   }
 
   onKeyDown(e) {
-    if (e.keyCode === 8 && (!this.state.value || !this.state.value.length)) {
+    if (e.keyCode === 8) {
       this.props.onBackspace();
+      if (this.state.value.length && this.state.value) {
+        this.clear();
+      }
     }
   }
 
