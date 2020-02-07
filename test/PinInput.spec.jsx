@@ -21,5 +21,5 @@ test('The inputs should be styled via inputStyle prop', () => {
 test('The inputs should be render with initial value', () => {
   const initialValue = '76239';
   const pinInput = mount(<PinInput initialValue={initialValue} length={5} />);
-  expect(pinInput.find('input').map(el => el.instance().value).join('')).toEqual(initialValue);
+  expect(pinInput.find(PinItem).map(el => el.instance().state.value).join('')).toEqual(initialValue);
 });

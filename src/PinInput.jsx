@@ -58,6 +58,7 @@ class PinInput extends Component {
 
   onBackspace(index) {
     if (index > 0) {
+      this.elements[index - 1].clear();
       this.elements[index - 1].focus();
     }
   }

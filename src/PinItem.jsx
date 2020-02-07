@@ -26,16 +26,20 @@ class PinItem extends Component {
     this.state = {
       value: props.initialValue,
       focus: false,
+      pin: '',
     };
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);    
+    this.onBlur = this.onBlur.bind(this);   
   }
 
   onKeyDown(e) {
-    if (e.keyCode === 8 && (!this.state.value || !this.state.value.length)) {
+    if (e.keyCode === 8) {
       this.props.onBackspace();
+      if (this.state.value.length && this.state.value) {
+        this.clear();
+      }
     }
   }
 
@@ -47,9 +51,9 @@ class PinItem extends Component {
 
   onChange(e) {
     const value = this.validate(e.target.value);
-    if (this.state.value === value) return;
     if (value.length < 2) {
-      this.setState({value});
+      this.setState({pin: value});
+      this.setState({value: '\u2022'});
       // timeout is to make sure that clearing happens after value is set
       // this is done beacause the setState callback was not triggering in react@15.2.4
       setTimeout(() => {
@@ -87,17 +91,18 @@ class PinItem extends Component {
   }
 
   render() {
-    const { focus, value } = this.state;
-    const { type, inputMode, inputStyle, inputFocusStyle } = this.props;
-    const inputType = this.props.type === 'numeric' ? 'tel' : (this.props.type || 'text');
+    const { focus, value = '', pin= '' } = this.state;
+    const { type = 'text', inputMode, inputStyle, inputFocusStyle, secret } = this.props;
+    const inputType = type === 'numeric' ? 'tel' : type;
+
     return (<input
       className='pincode-input-text'
       onChange={ this.onChange }
       onKeyDown={ this.onKeyDown }
       maxLength='1'
       autoComplete='off'
-      type={ this.props.secret ? 'password' : inputType }
-      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
+      type={ inputType }
+      pattern={ type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
       ref={ n => (this.input = n) }
       onFocus={ this.onFocus }
       onBlur={ this.onBlur }
@@ -107,7 +112,8 @@ class PinItem extends Component {
         inputStyle,
         focus ? Object.assign({}, styles.inputFocus, inputFocusStyle) : {},
       ) }
-      value={ value }
+      value={ secret ? value : pin }
+      inputmode={ inputMode }
     />);
   }
 }
