@@ -94,6 +94,8 @@ class PinItem extends Component {
       className='pincode-input-text'
       onChange={ this.onChange }
       onKeyDown={ this.onKeyDown }
+      placeholder={ value }
+      aria-label={ value }
       maxLength='1'
       autoComplete='off'
       type={ this.props.secret ? 'password' : inputType }
