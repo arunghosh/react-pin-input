@@ -71,6 +71,7 @@ class PinInput extends Component {
             initialValue={e}
             ref={ n => (this.elements[i] = n) }
             key={ i }
+            disabled={ this.props.disabled }
             onBackspace={ () => this.onBackspace(i) }
             secret={ this.props.secret || false }
             onChange={ v => this.onItemChange(v, i) }
@@ -93,6 +94,7 @@ PinInput.propTypes = {
   onComplete: PropTypes.func,
   validate: PropTypes.func,
   secret: PropTypes.bool,
+  disabled: PropTypes.bool,
   focus: PropTypes.bool,
   onChange: PropTypes.func,
   inputMode: PropTypes.string,
@@ -107,6 +109,7 @@ PinInput.defaultProps = {
   secret: false,
   validate: null,
   focus: false,
+  disabled: false,
   onChange: () => {},
   onComplete: () => {},
   inputMode: undefined,

@@ -42,6 +42,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
 ||| if ```numeric```, the input will take only numbers|
 ||| if ```custom```, the input will take other than numbers|
 |secret|boolean|If you set the ```secret``` attibute, the input will be hidden as shown below.
+|disabled|boolean|If you set the ```disable``` attibute, the input will be disabled.
 |focus|boolean| Setting the ```focus``` attibute will set the default focus on the first input element.
 |onChange|function|Callback function invoked on input change. The first parameter is the value and the second is the index of the input that is currently in focus|
 |onComplete|function|Callback function invoked when all inputs have valid values. The first parameter is the value and the second is the index of the input that is currently in focus|

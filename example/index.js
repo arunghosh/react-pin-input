@@ -10,11 +10,12 @@ ReactDOM.render(
       length={5}
       initialValue=""
       focus
-      secret
+      // disabled
+      // secret
       ref={p => (pin = p)}
-      type="numeric"
+      type="alphanumeric"
       onChange={v => console.log(v)}
-      onComplete={v => pin.clear(v)}
+      // onComplete={v => pin.clear(v)}
     />
     <button onClick={() => pin.clear()}>Clear</button>
   </div>,

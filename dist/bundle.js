@@ -835,6 +835,7 @@ var PinInput = function (_Component) {
               return _this2.elements[i] = n;
             },
             key: i,
+            disabled: _this2.props.disabled,
             onBackspace: function onBackspace() {
               return _this2.onBackspace(i);
             },
@@ -863,6 +864,7 @@ PinInput.propTypes = {
   onComplete: _propTypes2.default.func,
   validate: _propTypes2.default.func,
   secret: _propTypes2.default.bool,
+  disabled: _propTypes2.default.bool,
   focus: _propTypes2.default.bool,
   onChange: _propTypes2.default.func,
   inputMode: _propTypes2.default.string,
@@ -877,6 +879,7 @@ PinInput.defaultProps = {
   secret: false,
   validate: null,
   focus: false,
+  disabled: false,
   onChange: function onChange() {},
   onComplete: function onComplete() {},
   inputMode: undefined,
@@ -3038,6 +3041,7 @@ var PinItem = function (_Component) {
 
       var inputType = this.props.type === 'numeric' ? 'tel' : this.props.type || 'text';
       return _react2.default.createElement('input', {
+        disabled: this.props.disabled ? "disabled" : undefined,
         className: 'pincode-input-text',
         onChange: this.onChange,
         onKeyDown: this.onKeyDown,
@@ -3066,6 +3070,7 @@ PinItem.propTypes = {
   onChange: _propTypes2.default.func.isRequired,
   onBackspace: _propTypes2.default.func.isRequired,
   secret: _propTypes2.default.bool,
+  disabled: _propTypes2.default.bool,
   type: _propTypes2.default.string,
   inputMode: _propTypes2.default.string,
   validate: _propTypes2.default.func,

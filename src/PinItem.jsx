@@ -91,6 +91,7 @@ class PinItem extends Component {
     const { type, inputMode, inputStyle, inputFocusStyle } = this.props;
     const inputType = this.props.type === 'numeric' ? 'tel' : (this.props.type || 'text');
     return (<input
+      disabled={ this.props.disabled ? "disabled": undefined }
       className='pincode-input-text'
       onChange={ this.onChange }
       onKeyDown={ this.onKeyDown }
@@ -119,6 +120,7 @@ PinItem.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBackspace: PropTypes.func.isRequired,
   secret: PropTypes.bool,
+  disabled: PropTypes.bool,
   type: PropTypes.string,
   inputMode: PropTypes.string,
   validate: PropTypes.func,
