@@ -33,7 +33,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
-    "jest": "^23.6.0",
+    "jest": "^26.1.0",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^16.2.0",
