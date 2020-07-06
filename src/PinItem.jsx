@@ -30,7 +30,7 @@ class PinItem extends Component {
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);    
+    this.onBlur = this.onBlur.bind(this);
   }
 
   onKeyDown(e) {
@@ -89,7 +89,7 @@ class PinItem extends Component {
   render() {
     const { focus, value } = this.state;
     const { type, inputMode, inputStyle, inputFocusStyle } = this.props;
-    const inputType = this.props.type === 'numeric' ? 'tel' : (this.props.type || 'text');
+    const inputType = type === 'numeric' ? 'tel' : (type || 'text');
     return (<input
       disabled={ this.props.disabled ? "disabled": undefined }
       className='pincode-input-text'
@@ -100,6 +100,7 @@ class PinItem extends Component {
       maxLength='1'
       autoComplete='off'
       type={ this.props.secret ? 'password' : inputType }
+      inputMode={ inputMode || 'text'}
       pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
       ref={ n => (this.input = n) }
       onFocus={ this.onFocus }
