@@ -28,6 +28,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
   secret 
   onChange={(value, index) => {}} 
   type="numeric" 
+  inputMode="number"
   style={{padding: '10px'}}  
   inputStyle={{borderColor: 'red'}}
   inputFocusStyle={{borderColor: 'blue'}}
