@@ -3039,7 +3039,7 @@ var PinItem = function (_Component) {
           inputStyle = _props.inputStyle,
           inputFocusStyle = _props.inputFocusStyle;
 
-      var inputType = this.props.type === 'numeric' ? 'tel' : this.props.type || 'text';
+      var inputType = type === 'numeric' ? 'tel' : type || 'text';
       return _react2.default.createElement('input', {
         disabled: this.props.disabled ? "disabled" : undefined,
         className: 'pincode-input-text',
@@ -3050,6 +3050,7 @@ var PinItem = function (_Component) {
         maxLength: '1',
         autoComplete: 'off',
         type: this.props.secret ? 'password' : inputType,
+        inputMode: inputMode || 'text',
         pattern: this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*',
         ref: function ref(n) {
           return _this3.input = n;
