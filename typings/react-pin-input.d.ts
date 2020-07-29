@@ -9,6 +9,7 @@ declare module 'react-pin-input' {
         type?: InputType;
         inputMode?: string;
         secret?: boolean;
+        disabled?: boolean;
         focus?: boolean;
         onChange?: (value: string, index: number) => void;
         onComplete?: (value: string, index: number) => void;
