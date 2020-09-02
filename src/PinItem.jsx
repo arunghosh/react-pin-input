@@ -99,7 +99,7 @@ class PinItem extends Component {
       aria-label={ value }
       maxLength='1'
       autoComplete='off'
-      type={ this.props.secret ? 'password' : inputType }
+      type={this.props.secret && value ? "password" : inputType}
       inputMode={ inputMode || 'text'}
       pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
       ref={ n => (this.input = n) }
