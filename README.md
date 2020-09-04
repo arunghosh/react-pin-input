@@ -33,6 +33,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
   inputStyle={{borderColor: 'red'}}
   inputFocusStyle={{borderColor: 'blue'}}
   onComplete={(value, index) => {}}
+  autoSelect={true}
 />
 ```
 |Attribute|Type|Description|
@@ -50,6 +51,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
 |style|object|Style for the container `div`
 |inputStyle|object|Style for the input element
 |inputFocusStyle|object|Style for the input element when on focus
+|autoSelect|boolean|Setting ```autoSelect``` to ```false``` will stop automatically highlighting input values on focus. This eliminates popup focus flashing on iOS.|
 
 Display when secret is set
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin-secret.png)

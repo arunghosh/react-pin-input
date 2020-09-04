@@ -80,6 +80,7 @@ class PinInput extends Component {
             validate={ this.props.validate }
             inputStyle={ this.props.inputStyle }
             inputFocusStyle={ this.props.inputFocusStyle }
+            autoSelect={ this.props.autoSelect }
           />)
         }
       </div>
@@ -101,6 +102,7 @@ PinInput.propTypes = {
   style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   inputStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   inputFocusStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  autoSelect: PropTypes.bool,
 };
 
 PinInput.defaultProps = {
@@ -116,6 +118,7 @@ PinInput.defaultProps = {
   style: {},
   inputStyle: {},
   inputFocusStyle: {},
+  autoSelect: true,
 };
 
 export default PinInput;

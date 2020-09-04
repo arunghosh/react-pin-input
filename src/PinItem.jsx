@@ -65,7 +65,9 @@ class PinItem extends Component {
   }
 
   onFocus(e) {
-    e.target.select();
+    if (this.props.autoSelect) {
+      e.target.select();
+    }
     this.setState({ focus: true });
   }
 
@@ -127,6 +129,7 @@ PinItem.propTypes = {
   validate: PropTypes.func,
   inputStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   inputFocusStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  autoSelect: PropTypes.bool,
 };
 
 PinItem.defaultProps = {
@@ -134,6 +137,7 @@ PinItem.defaultProps = {
   type: 'numeric',
   inputMode: undefined,
   validate: undefined,
+  autoSelect: false
 };
 
 export default PinItem;
