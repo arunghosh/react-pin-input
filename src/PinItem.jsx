@@ -31,6 +31,7 @@ class PinItem extends Component {
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.onPaste = this.onPaste.bind(this);
   }
 
   onKeyDown(e) {
@@ -41,21 +42,27 @@ class PinItem extends Component {
 
   clear() {
     this.setState({
-      value: ''
+      value: '',
     });
   }
 
-  onChange(e) {
-    const value = this.validate(e.target.value);
-    if (this.state.value === value) return;
+  update(updatedValue, isPasting = false) {
+    const value = this.validate(updatedValue);
+    if (this.state.value === value && !isPasting) return;
+
     if (value.length < 2) {
-      this.setState({value});
-      // timeout is to make sure that clearing happens after value is set
-      // this is done beacause the setState callback was not triggering in react@15.2.4
+      this.setState({
+        value,
+      });
+
       setTimeout(() => {
-        this.props.onChange(value);
+        this.props.onChange(value, isPasting);
       }, 0);
     }
+  }
+
+  onChange(e) {
+    this.update(e.target.value);
   }
 
   focus() {
@@ -73,6 +80,15 @@ class PinItem extends Component {
 
   onBlur() {
     this.setState({ focus: false });
+  }
+
+  onPaste(e) {
+    if (!this.props.onPaste) {
+      return;
+    }
+
+    const value = e.clipboardData.getData('text');
+    this.props.onPaste(value);
   }
 
   validate(value) {
@@ -107,6 +123,7 @@ class PinItem extends Component {
       ref={ n => (this.input = n) }
       onFocus={ this.onFocus }
       onBlur={ this.onBlur }
+      onPaste={ this.onPaste }
       style={ Object.assign(
         {},
         styles.input,
@@ -122,6 +139,7 @@ PinItem.propTypes = {
   initialValue: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onBackspace: PropTypes.func.isRequired,
+  onPaste: PropTypes.func,
   secret: PropTypes.bool,
   disabled: PropTypes.bool,
   type: PropTypes.string,
@@ -137,7 +155,8 @@ PinItem.defaultProps = {
   type: 'numeric',
   inputMode: undefined,
   validate: undefined,
-  autoSelect: false
+  autoSelect: false,
+  onPaste: undefined,
 };
 
 export default PinItem;
