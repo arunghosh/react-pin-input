@@ -758,6 +758,8 @@ var PinInput = function (_Component) {
     });
     _this.elements = [];
     _this.currentIndex = 0;
+
+    _this.onPaste = _this.onPaste.bind(_this);
     return _this;
   }
 
@@ -789,7 +791,7 @@ var PinInput = function (_Component) {
 
   }, {
     key: 'onItemChange',
-    value: function onItemChange(value, index) {
+    value: function onItemChange(value, isPasting, index) {
       var _props = this.props,
           length = _props.length,
           onComplete = _props.onComplete,
@@ -808,8 +810,16 @@ var PinInput = function (_Component) {
       // Notify the parent
       var pin = this.values.join('');
 
-      onChange(pin, currentIndex);
+      if (!isPasting) {
+        onChange(pin, currentIndex);
+      }
+
       if (pin.length === length) {
+        // for pasting, trigger onComplete only when the last input triggers onChange
+        if (isPasting && index < length - 1) {
+          return;
+        }
+
         onComplete(pin, currentIndex);
       }
     }
@@ -819,6 +829,19 @@ var PinInput = function (_Component) {
       if (index > 0) {
         this.elements[index - 1].focus();
       }
+    }
+  }, {
+    key: 'onPaste',
+    value: function onPaste(value) {
+      var length = this.props.length;
+
+      if (value.length !== length) {
+        return;
+      }
+
+      this.elements.forEach(function (el, index) {
+        return el.update(value[index], true);
+      });
     }
   }, {
     key: 'render',
@@ -840,15 +863,16 @@ var PinInput = function (_Component) {
               return _this2.onBackspace(i);
             },
             secret: _this2.props.secret || false,
-            onChange: function onChange(v) {
-              return _this2.onItemChange(v, i);
+            onChange: function onChange(v, isPasting) {
+              return _this2.onItemChange(v, isPasting, i);
             },
             type: _this2.props.type,
             inputMode: _this2.props.inputMode,
             validate: _this2.props.validate,
             inputStyle: _this2.props.inputStyle,
             inputFocusStyle: _this2.props.inputFocusStyle,
-            autoSelect: _this2.props.autoSelect
+            autoSelect: _this2.props.autoSelect,
+            onPaste: i === 0 ? _this2.onPaste : null
           });
         })
       );
@@ -2965,6 +2989,7 @@ var PinItem = function (_Component) {
     _this.onKeyDown = _this.onKeyDown.bind(_this);
     _this.onFocus = _this.onFocus.bind(_this);
     _this.onBlur = _this.onBlur.bind(_this);
+    _this.onPaste = _this.onPaste.bind(_this);
     return _this;
   }
 
@@ -2983,20 +3008,29 @@ var PinItem = function (_Component) {
       });
     }
   }, {
-    key: 'onChange',
-    value: function onChange(e) {
+    key: 'update',
+    value: function update(updatedValue) {
       var _this2 = this;
 
-      var value = this.validate(e.target.value);
-      if (this.state.value === value) return;
+      var isPasting = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      var value = this.validate(updatedValue);
+      if (this.state.value === value && !isPasting) return;
+
       if (value.length < 2) {
-        this.setState({ value: value });
-        // timeout is to make sure that clearing happens after value is set
-        // this is done beacause the setState callback was not triggering in react@15.2.4
+        this.setState({
+          value: value
+        });
+
         setTimeout(function () {
-          _this2.props.onChange(value);
+          _this2.props.onChange(value, isPasting);
         }, 0);
       }
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(e) {
+      this.update(e.target.value);
     }
   }, {
     key: 'focus',
@@ -3015,6 +3049,17 @@ var PinItem = function (_Component) {
     key: 'onBlur',
     value: function onBlur() {
       this.setState({ focus: false });
+    }
+  }, {
+    key: 'onPaste',
+    value: function onPaste(e) {
+      debugger;
+      if (!this.props.onPaste) {
+        return;
+      }
+
+      var value = e.clipboardData.getData('text');
+      this.props.onPaste(value);
     }
   }, {
     key: 'validate',
@@ -3062,6 +3107,7 @@ var PinItem = function (_Component) {
         },
         onFocus: this.onFocus,
         onBlur: this.onBlur,
+        onPaste: this.onPaste,
         style: Object.assign({}, styles.input, inputStyle, focus ? Object.assign({}, styles.inputFocus, inputFocusStyle) : {}),
         value: value
       });
@@ -3075,6 +3121,7 @@ PinItem.propTypes = {
   initialValue: _propTypes2.default.string,
   onChange: _propTypes2.default.func.isRequired,
   onBackspace: _propTypes2.default.func.isRequired,
+  onPaste: _propTypes2.default.func,
   secret: _propTypes2.default.bool,
   disabled: _propTypes2.default.bool,
   type: _propTypes2.default.string,
@@ -3090,7 +3137,8 @@ PinItem.defaultProps = {
   type: 'numeric',
   inputMode: undefined,
   validate: undefined,
-  autoSelect: false
+  autoSelect: false,
+  onPaste: undefined
 };
 
 exports.default = PinItem;
