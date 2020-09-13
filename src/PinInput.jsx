@@ -12,6 +12,8 @@ class PinInput extends Component {
     this.values = Array(props.length).fill('').map((x, i) => props.initialValue.toString()[i] || '');
     this.elements = [];
     this.currentIndex = 0;
+
+    this.onPaste = this.onPaste.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +33,7 @@ class PinInput extends Component {
 
   /**
    */
-  onItemChange(value, index) {
+  onItemChange(value, isPasting, index) {
     const { length, onComplete, onChange } = this.props;
     let currentIndex = index;
 
@@ -50,8 +52,16 @@ class PinInput extends Component {
       .values
       .join('');
 
-    onChange(pin, currentIndex);
+    if (!isPasting) {
+      onChange(pin, currentIndex);
+    }
+
     if (pin.length === length) {
+      // for pasting, trigger onComplete only when the last input triggers onChange
+      if (isPasting && index < length - 1) {
+        return;
+      }
+
       onComplete(pin, currentIndex);
     }
   }
@@ -60,6 +70,15 @@ class PinInput extends Component {
     if (index > 0) {
       this.elements[index - 1].focus();
     }
+  }
+
+  onPaste(value) {
+    const { length } = this.props;
+    if (value.length !== length) {
+      return;
+    }
+
+    this.elements.forEach((el, index) => el.update(value[index], true));
   }
 
   render() {
@@ -74,13 +93,14 @@ class PinInput extends Component {
             disabled={ this.props.disabled }
             onBackspace={ () => this.onBackspace(i) }
             secret={ this.props.secret || false }
-            onChange={ v => this.onItemChange(v, i) }
+            onChange={ (v, isPasting) => this.onItemChange(v, isPasting, i) }
             type={ this.props.type }
             inputMode={ this.props.inputMode }
             validate={ this.props.validate }
             inputStyle={ this.props.inputStyle }
             inputFocusStyle={ this.props.inputFocusStyle }
             autoSelect={ this.props.autoSelect }
+            onPaste={ i === 0 ? this.onPaste : null }
           />)
         }
       </div>
