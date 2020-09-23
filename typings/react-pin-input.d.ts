@@ -17,6 +17,7 @@ declare module 'react-pin-input' {
         inputStyle?: React.CSSProperties;
         inputFocusStyle?: React.CSSProperties;
         validate?: (value: string) => string;
+        autoSelect?: boolean;
     }
 
     class PinInput extends React.Component<PinInputProps> {
