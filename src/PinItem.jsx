@@ -24,7 +24,7 @@ class PinItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.initialValue,
+      value: this.validate(props.initialValue),
       focus: false,
     };
     this.onChange = this.onChange.bind(this);
@@ -124,7 +124,7 @@ class PinItem extends Component {
       autoComplete='off'
       type={ this.props.secret ? 'password' : inputType }
       inputMode={ inputMode || 'text'}
-      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
+      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '^[a-zA-Z0-9]+$' }
       ref={ n => (this.input = n) }
       onFocus={ this.onFocus }
       onBlur={ this.onBlur }

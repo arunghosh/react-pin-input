@@ -101,6 +101,7 @@ class PinInput extends Component {
             inputFocusStyle={ this.props.inputFocusStyle }
             autoSelect={ this.props.autoSelect }
             onPaste={ i === 0 ? this.onPaste : null }
+            regexCriteria={ this.props.regexCriteria }
           />)
         }
       </div>
@@ -140,7 +141,7 @@ PinInput.defaultProps = {
   inputStyle: {},
   inputFocusStyle: {},
   autoSelect: true,
-  regexCriteria: '^[a-zA-Z0-9]+$'
+  regexCriteria: /^[a-zA-Z0-9]+$/
 };
 
 export default PinInput;

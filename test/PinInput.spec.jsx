@@ -25,7 +25,14 @@ test('The inputs should be render with initial value', () => {
 });
 
 test('The inputs should not allow special characters', () => {
-  const initialValue = '^%#$@!6';
-  const pinInput = mount(<PinInput initialValue={initialValue} length={5} />);
+  const initialValue = '^%#$@';
+  const pinInput = mount(<PinInput initialValue={initialValue} length={5} type='alphanumeric' />);
   expect(pinInput.find('input').map(el => el.instance().value).join('')).toEqual(''); 
+})
+
+test('The inputs should to allow special characters', () => {
+  const initialValue = '^%#$@';
+  const pinInput = mount(<PinInput initialValue={initialValue} length={5} 
+    type='alphanumeric' regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/} />);
+  expect(pinInput.find('input').map(el => el.instance().value).join('')).toEqual(initialValue); 
 })

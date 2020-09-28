@@ -34,6 +34,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
   inputFocusStyle={{borderColor: 'blue'}}
   onComplete={(value, index) => {}}
   autoSelect={true}
+  regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
 />
 ```
 |Attribute|Type|Description|
@@ -52,6 +53,7 @@ The component takes in the length of the PIN and two callback to notifiy change 
 |inputStyle|object|Style for the input element
 |inputFocusStyle|object|Style for the input element when on focus
 |autoSelect|boolean|Setting ```autoSelect``` to ```false``` will stop automatically highlighting input values on focus. This eliminates popup focus flashing on iOS.|
+|regexCriteria|any|Add validation for ```alphanumeric``` type. *NOTE:* default value is /^[ A-Za-z0-9_@./#&+-]*$/
 
 Display when secret is set
 ![alt tag](https://github.com/arunghosh/react-pin-input/raw/master/docs/pin-secret.png)
