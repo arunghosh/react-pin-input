@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import PinItem from './PinItem';
 
 /**
@@ -123,6 +123,7 @@ PinInput.propTypes = {
   inputStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   inputFocusStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   autoSelect: PropTypes.bool,
+  regexCriteria: PropTypes.any,
 };
 
 PinInput.defaultProps = {
@@ -139,6 +140,7 @@ PinInput.defaultProps = {
   inputStyle: {},
   inputFocusStyle: {},
   autoSelect: true,
+  regexCriteria: '^[a-zA-Z0-9]+$'
 };
 
 export default PinInput;

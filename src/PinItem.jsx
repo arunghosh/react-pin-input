@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 const styles = {
   input: {
@@ -100,8 +100,13 @@ class PinItem extends Component {
       const numCode = value.charCodeAt(0);
       const isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
       return isInteger ? value : '';
+    } else {
+      if (this.props.regexCriteria.test(value)) {
+        return value.toUpperCase()
+      }
+
+      return '';
     }
-    return value.toUpperCase();
   }
 
   render() {
@@ -148,6 +153,7 @@ PinItem.propTypes = {
   inputStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   inputFocusStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   autoSelect: PropTypes.bool,
+  regexCriteria: PropTypes.any,
 };
 
 PinItem.defaultProps = {
@@ -157,6 +163,7 @@ PinItem.defaultProps = {
   validate: undefined,
   autoSelect: false,
   onPaste: undefined,
+  regexCriteria: /^[a-zA-Z0-9]+$/
 };
 
 export default PinItem;
