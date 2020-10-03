@@ -5,11 +5,12 @@ import PinItem from './PinItem';
 /**
  */
 class PinInput extends Component {
-
   constructor(props) {
     super(props);
 
-    this.values = Array(props.length).fill('').map((x, i) => props.initialValue.toString()[i] || '');
+    this.values = Array(props.length)
+      .fill('')
+      .map((x, i) => props.initialValue.toString()[i] || '');
     this.elements = [];
     this.currentIndex = 0;
 
@@ -18,17 +19,17 @@ class PinInput extends Component {
 
   componentDidMount() {
     // Setting focus on the first element
-    if(this.props.focus && this.props.length) this.elements[0].focus();
+    if (this.props.focus && this.props.length) this.elements[0].focus();
   }
 
   clear() {
     this.elements.forEach(e => e.clear());
-    this.values = this.values.map(() => undefined)
+    this.values = this.values.map(() => undefined);
     this.elements[0].focus();
   }
 
   focus() {
-    if(this.props.length) this.elements[0].focus();
+    if (this.props.length) this.elements[0].focus();
   }
 
   /**
@@ -42,15 +43,11 @@ class PinInput extends Component {
     // Set focus on next
     if (value.length === 1 && index < length - 1) {
       currentIndex += 1;
-      this
-        .elements[currentIndex]
-        .focus();
+      this.elements[currentIndex].focus();
     }
 
     // Notify the parent
-    const pin = this
-      .values
-      .join('');
+    const pin = this.values.join('');
 
     if (!isPasting) {
       onChange(pin, currentIndex);
@@ -84,26 +81,25 @@ class PinInput extends Component {
   render() {
     return (
       <div style={this.props.style} className='pincode-input-container'>
-        {this
-          .values
-          .map((e, i) => <PinItem
+        {this.values.map((e, i) => (
+          <PinItem
             initialValue={e}
-            ref={ n => (this.elements[i] = n) }
-            key={ i }
-            disabled={ this.props.disabled }
-            onBackspace={ () => this.onBackspace(i) }
-            secret={ this.props.secret || false }
-            onChange={ (v, isPasting) => this.onItemChange(v, isPasting, i) }
-            type={ this.props.type }
-            inputMode={ this.props.inputMode }
-            validate={ this.props.validate }
-            inputStyle={ this.props.inputStyle }
-            inputFocusStyle={ this.props.inputFocusStyle }
-            autoSelect={ this.props.autoSelect }
-            onPaste={ i === 0 ? this.onPaste : null }
-            regexCriteria={ this.props.regexCriteria }
-          />)
-        }
+            ref={n => (this.elements[i] = n)}
+            key={i}
+            disabled={this.props.disabled}
+            onBackspace={() => this.onBackspace(i)}
+            secret={this.props.secret || false}
+            onChange={(v, isPasting) => this.onItemChange(v, isPasting, i)}
+            type={this.props.type}
+            inputMode={this.props.inputMode}
+            validate={this.props.validate}
+            inputStyle={this.props.inputStyle}
+            inputFocusStyle={this.props.inputFocusStyle}
+            autoSelect={this.props.autoSelect}
+            onPaste={i === 0 ? this.onPaste : null}
+            regexCriteria={this.props.regexCriteria}
+          />
+        ))}
       </div>
     );
   }
@@ -141,7 +137,7 @@ PinInput.defaultProps = {
   inputStyle: {},
   inputFocusStyle: {},
   autoSelect: true,
-  regexCriteria: /^[a-zA-Z0-9]+$/
+  regexCriteria: /^[a-zA-Z0-9]+$/,
 };
 
 export default PinInput;

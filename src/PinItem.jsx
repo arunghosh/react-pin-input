@@ -20,7 +20,6 @@ const styles = {
 /**
  */
 class PinItem extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -66,9 +65,7 @@ class PinItem extends Component {
   }
 
   focus() {
-    this
-      .input
-      .focus();
+    this.input.focus();
   }
 
   onFocus(e) {
@@ -92,51 +89,53 @@ class PinItem extends Component {
   }
 
   validate(value) {
-    if(this.props.validate) {
+    if (this.props.validate) {
       return this.props.validate(value);
     }
 
-    if(this.props.type === 'numeric') {
+    if (this.props.type === 'numeric') {
       const numCode = value.charCodeAt(0);
-      const isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
+      const isInteger =
+        numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
       return isInteger ? value : '';
-    } else {
-      if (this.props.regexCriteria.test(value)) {
-        return value.toUpperCase()
-      }
-
-      return '';
     }
+    if (this.props.regexCriteria.test(value)) {
+      return value.toUpperCase();
+    }
+
+    return '';
   }
 
   render() {
     const { focus, value } = this.state;
     const { type, inputMode, inputStyle, inputFocusStyle } = this.props;
-    const inputType = type === 'numeric' ? 'tel' : (type || 'text');
-    return (<input
-      disabled={ this.props.disabled ? "disabled": undefined }
-      className='pincode-input-text'
-      onChange={ this.onChange }
-      onKeyDown={ this.onKeyDown }
-      placeholder={ value }
-      aria-label={ value }
-      maxLength='1'
-      autoComplete='off'
-      type={ this.props.secret ? 'password' : inputType }
-      inputMode={ inputMode || 'text'}
-      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '^[a-zA-Z0-9]+$' }
-      ref={ n => (this.input = n) }
-      onFocus={ this.onFocus }
-      onBlur={ this.onBlur }
-      onPaste={ this.onPaste }
-      style={ Object.assign(
-        {},
-        styles.input,
-        inputStyle,
-        focus ? Object.assign({}, styles.inputFocus, inputFocusStyle) : {},
-      ) }
-      value={ value }
-    />);
+    const inputType = type === 'numeric' ? 'tel' : type || 'text';
+    return (
+      <input
+        disabled={this.props.disabled ? 'disabled' : undefined}
+        className='pincode-input-text'
+        onChange={this.onChange}
+        onKeyDown={this.onKeyDown}
+        placeholder={value}
+        aria-label={value}
+        maxLength='1'
+        autoComplete='off'
+        type={this.props.secret ? 'password' : inputType}
+        inputMode={inputMode || 'text'}
+        pattern={this.props.type === 'numeric' ? '[0-9]*' : '^[a-zA-Z0-9]+$'}
+        ref={n => (this.input = n)}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}
+        onPaste={this.onPaste}
+        style={Object.assign(
+          {},
+          styles.input,
+          inputStyle,
+          focus ? Object.assign({}, styles.inputFocus, inputFocusStyle) : {},
+        )}
+        value={value}
+      />
+    );
   }
 }
 
@@ -160,10 +159,11 @@ PinItem.defaultProps = {
   secret: false,
   type: 'numeric',
   inputMode: undefined,
+  disabled: false,
   validate: undefined,
   autoSelect: false,
   onPaste: undefined,
-  regexCriteria: /^[a-zA-Z0-9]+$/
+  regexCriteria: /^[a-zA-Z0-9]+$/,
 };
 
 export default PinItem;
