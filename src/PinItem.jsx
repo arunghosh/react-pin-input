@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 const styles = {
   input: {
@@ -24,7 +24,7 @@ class PinItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.initialValue,
+      value: this.validate(props.initialValue),
       focus: false,
     };
     this.onChange = this.onChange.bind(this);
@@ -100,8 +100,13 @@ class PinItem extends Component {
       const numCode = value.charCodeAt(0);
       const isInteger = numCode >= '0'.charCodeAt(0) && numCode <= '9'.charCodeAt(0);
       return isInteger ? value : '';
+    } else {
+      if (this.props.regexCriteria.test(value)) {
+        return value.toUpperCase()
+      }
+
+      return '';
     }
-    return value.toUpperCase();
   }
 
   render() {
@@ -119,7 +124,7 @@ class PinItem extends Component {
       autoComplete='off'
       type={ this.props.secret ? 'password' : inputType }
       inputMode={ inputMode || 'text'}
-      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '[A-Z0-9]*' }
+      pattern={ this.props.type === 'numeric' ? '[0-9]*' : '^[a-zA-Z0-9]+$' }
       ref={ n => (this.input = n) }
       onFocus={ this.onFocus }
       onBlur={ this.onBlur }
@@ -148,6 +153,7 @@ PinItem.propTypes = {
   inputStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   inputFocusStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   autoSelect: PropTypes.bool,
+  regexCriteria: PropTypes.any,
 };
 
 PinItem.defaultProps = {
@@ -157,6 +163,7 @@ PinItem.defaultProps = {
   validate: undefined,
   autoSelect: false,
   onPaste: undefined,
+  regexCriteria: /^[a-zA-Z0-9]+$/
 };
 
 export default PinItem;

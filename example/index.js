@@ -8,7 +8,7 @@ ReactDOM.render(
   <div>
     <PinInput
       length={5}
-      initialValue=""
+      initialValue="TFSAA"
       focus
       // disabled
       // secret
