@@ -14,7 +14,6 @@ test('The inputs should be equal to the length specified', () => {
 
 test('The inputs should be styled via inputStyle prop', () => {
   const pinInput = mount(<PinInput inputStyle={{ color: 'red' }} length={5} />);
-
   expect(pinInput.find('input').first().props().style.color).toEqual('red');
 });
 
@@ -30,9 +29,9 @@ test('The inputs should not allow special characters', () => {
   expect(pinInput.find('input').map(el => el.instance().value).join('')).toEqual(''); 
 })
 
-test('The inputs should to allow special characters', () => {
-  const initialValue = '^%#$@';
+test('The inputs should allow special characters', () => {
+  const initialValue = '%#$@';
   const pinInput = mount(<PinInput initialValue={initialValue} length={5} 
-    type='alphanumeric' regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/} />);
+    type='alphanumeric' regexCriteria={/^[ A-Za-z0-9_@./#&%$+-]*$/} />);
   expect(pinInput.find('input').map(el => el.instance().value).join('')).toEqual(initialValue); 
 })
