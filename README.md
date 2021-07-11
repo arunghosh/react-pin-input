@@ -22,6 +22,8 @@ npm install react-pin-input --save
 The component takes in the length of the PIN and two callback to notifiy change and completion. The ```index``` is the input which is currently in focus.
 
 ```javascript
+import PinInput from 'react-pin-input';
+
 <PinInput 
   length={4} 
   initialValue=""
