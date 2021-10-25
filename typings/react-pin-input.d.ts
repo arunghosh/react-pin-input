@@ -19,6 +19,8 @@ declare module "react-pin-input" {
     validate?: (value: string) => string;
     autoSelect?: boolean;
     regexCriteria?: any;
+    ariaLabel?: string
+    placeholder?: string
   }
 
   class PinInput extends React.Component<PinInputProps> {
