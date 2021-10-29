@@ -98,6 +98,8 @@ class PinInput extends Component {
             autoSelect={this.props.autoSelect}
             onPaste={i === 0 ? this.onPaste : null}
             regexCriteria={this.props.regexCriteria}
+            ariaLabel={this.props.ariaLabel}
+            placeholder={this.props.placeholder}
           />
         ))}
       </div>
@@ -121,6 +123,8 @@ PinInput.propTypes = {
   inputFocusStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   autoSelect: PropTypes.bool,
   regexCriteria: PropTypes.any,
+  ariaLabel: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 PinInput.defaultProps = {
@@ -138,6 +142,8 @@ PinInput.defaultProps = {
   inputFocusStyle: {},
   autoSelect: true,
   regexCriteria: /^[a-zA-Z0-9]+$/,
+  ariaLabel: '',
+  placeholder: ''
 };
 
 export default PinInput;

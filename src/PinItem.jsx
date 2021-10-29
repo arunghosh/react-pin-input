@@ -116,8 +116,8 @@ class PinItem extends Component {
         className='pincode-input-text'
         onChange={this.onChange}
         onKeyDown={this.onKeyDown}
-        placeholder={value}
-        aria-label={value}
+        placeholder={this.props.placeholder ? this.props.placeholder : value}
+        aria-label={this.props.ariaLabel ? this.props.ariaLabel : value}
         maxLength='1'
         autoComplete='off'
         type={this.props.secret ? 'password' : inputType}
@@ -153,6 +153,8 @@ PinItem.propTypes = {
   inputFocusStyle: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   autoSelect: PropTypes.bool,
   regexCriteria: PropTypes.any,
+  ariaLabel: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 PinItem.defaultProps = {
@@ -164,6 +166,8 @@ PinItem.defaultProps = {
   autoSelect: false,
   onPaste: undefined,
   regexCriteria: /^[a-zA-Z0-9]+$/,
+  ariaLabel: '',
+  placeholder: ''
 };
 
 export default PinItem;
