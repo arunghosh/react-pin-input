@@ -13,7 +13,7 @@ https://codesandbox.io/s/8jnlxw359
 
 ## Installation
 ```
-npm install react-pin-input --save
+npm install w-react-pin-input --save
 ```
 
 

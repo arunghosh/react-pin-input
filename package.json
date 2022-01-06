@@ -1,6 +1,6 @@
 {
-  "name": "react-pin-input",
-  "version": "1.0.1",
+  "name": "w-react-pin-input",
+  "version": "1.0.2",
   "description": "React component for PIN like input",
   "main": "dist/bundle.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=dev webpack-dev-server",
     "build": "rimraf dist && eslint src && NODE_ENV=prod webpack"
   },
-  "author": "Arun Ghosh",
+  "author": "Arun Ghosh << Lazy guy. So winza007 will upgrade this legacy instead.",
   "repository": {
     "type": "git",
     "url": "https://github.com/arunghosh/react-pin-input"
@@ -44,9 +44,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "peerDependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^0.14.0 || ^15.4.2 || ^16.2.0",
-    "react-dom": "^0.14.0 || ^15.4.2 || ^16.2.0"
+    "prop-types": "^15.6.0 || ^15.8.1",
+    "react": "^0.14.0 || ^15.4.2 || ^16.2.0 || ^17.0.2",
+    "react-dom": "^0.14.0 || ^15.4.2 || ^16.2.0 || ^17.0.2"
   },
   "types": "./typings/react-pin-input.d.ts"
 }
