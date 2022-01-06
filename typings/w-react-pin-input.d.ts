@@ -1,4 +1,4 @@
-declare module "react-pin-input" {
+declare module "w-react-pin-input" {
   import * as React from "react";
 
   type InputType = "numeric" | "custom";

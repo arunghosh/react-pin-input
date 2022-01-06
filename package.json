@@ -1,6 +1,6 @@
 {
   "name": "w-react-pin-input",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React component for PIN like input",
   "main": "dist/bundle.js",
   "scripts": {
@@ -48,5 +48,5 @@
     "react": "^0.14.0 || ^15.4.2 || ^16.2.0 || ^17.0.2",
     "react-dom": "^0.14.0 || ^15.4.2 || ^16.2.0 || ^17.0.2"
   },
-  "types": "./typings/react-pin-input.d.ts"
+  "types": "./typings/w-react-pin-input.d.ts"
 }
