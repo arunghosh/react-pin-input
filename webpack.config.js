@@ -18,7 +18,8 @@ module.exports = {
   entry,
   output: Object.assign(output, {
     filename: 'bundle.js',
-    library: 'react-sequence',
+    globalObject: "this",
+    library: 'react-pin-input',
     libraryTarget: 'umd', // universal module definition
   }),
   devtool: 'source-map',
