@@ -7,7 +7,7 @@ import PinItem from './PinItem';
 class PinInput extends Component {
   constructor(props) {
     super(props);
-
+  
     this.values = Array(props.length)
       .fill('')
       .map((x, i) => props.initialValue.toString()[i] || '');
@@ -100,6 +100,7 @@ class PinInput extends Component {
             regexCriteria={this.props.regexCriteria}
             ariaLabel={this.props.ariaLabel}
             placeholder={this.props.placeholder}
+            secretDelay={this.props.secretDelay}
           />
         ))}
       </div>

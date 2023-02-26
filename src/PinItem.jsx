@@ -24,6 +24,7 @@ class PinItem extends Component {
     super(props);
     this.state = {
       value: this.validate(props.initialValue),
+      showSecret: this.props.secret,
       focus: false,
     };
     this.onChange = this.onChange.bind(this);
@@ -31,6 +32,13 @@ class PinItem extends Component {
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onPaste = this.onPaste.bind(this);
+    this.secretTimeout = null;
+    this.inputTimeout = null;
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.secretTimeout);
+    clearTimeout(this.inputTimeout)
   }
 
   onKeyDown(e) {
@@ -45,6 +53,15 @@ class PinItem extends Component {
     });
   }
 
+  setSecretDelayed(value){
+    this.setState({ showSecret: false });
+    this.secretTimeout =  setTimeout(()=>{
+        this.setState({
+          showSecret: value ? true : false,
+        });
+      } ,this.props.secretDelay);
+  }
+
   update(updatedValue, isPasting = false) {
     const value = this.validate(updatedValue);
     if (this.state.value === value && !isPasting) return;
@@ -54,10 +71,10 @@ class PinItem extends Component {
         value,
       });
 
-      setTimeout(() => {
+     this.inputTimeout = setTimeout(() => {
         this.props.onChange(value, isPasting);
       }, 0);
-    }
+    } 
   }
 
   onChange(e) {
@@ -89,6 +106,8 @@ class PinItem extends Component {
   }
 
   validate(value) {
+    if(this.props.secretDelay) this.setSecretDelayed(value)
+
     if (this.props.validate) {
       return this.props.validate(value);
     }
@@ -120,7 +139,7 @@ class PinItem extends Component {
         aria-label={this.props.ariaLabel ? this.props.ariaLabel : value}
         maxLength='1'
         autoComplete='off'
-        type={this.props.secret ? 'password' : inputType}
+        type={this.state.showSecret ? 'password' : inputType}
         inputMode={inputMode || 'text'}
         pattern={this.props.type === 'numeric' ? '[0-9]*' : '^[a-zA-Z0-9]+$'}
         ref={n => (this.input = n)}
@@ -145,6 +164,7 @@ PinItem.propTypes = {
   onBackspace: PropTypes.func.isRequired,
   onPaste: PropTypes.func,
   secret: PropTypes.bool,
+  secretDelay: PropTypes.number,
   disabled: PropTypes.bool,
   type: PropTypes.string,
   inputMode: PropTypes.string,
