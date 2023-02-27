@@ -27,7 +27,8 @@ import PinInput from 'react-pin-input';
 <PinInput 
   length={4} 
   initialValue=""
-  secret 
+  secret
+  secretDelay={100} 
   onChange={(value, index) => {}} 
   type="numeric" 
   inputMode="number"
@@ -47,6 +48,7 @@ import PinInput from 'react-pin-input';
 ||| if ```numeric```, the input will take only numbers|
 ||| if ```custom```, the input will take other than numbers|
 |secret|boolean|If you set the ```secret``` attibute, the input will be hidden as shown below.
+|secretDelay|number|If you set the ```secret``` attibute, then you can optionally add secretDelay ms to hide the inputs as you type.
 |disabled|boolean|If you set the ```disable``` attibute, the input will be disabled.
 |focus|boolean| Setting the ```focus``` attibute will set the default focus on the first input element.
 |onChange|function|Callback function invoked on input change. The first parameter is the value and the second is the index of the input that is currently in focus|
