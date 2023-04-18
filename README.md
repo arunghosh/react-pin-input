@@ -31,7 +31,7 @@ import PinInput from 'react-pin-input';
   secretDelay={100} 
   onChange={(value, index) => {}} 
   type="numeric" 
-  inputMode="number"
+  inputMode="numeric"
   style={{padding: '10px'}}  
   inputStyle={{borderColor: 'red'}}
   inputFocusStyle={{borderColor: 'blue'}}
