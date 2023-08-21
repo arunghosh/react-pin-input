@@ -25,7 +25,6 @@ class PinInput extends Component {
   clear() {
     this.elements.forEach(e => e.clear());
     this.values = this.values.map(() => undefined);
-    this.elements[0].focus();
   }
 
   focus() {
